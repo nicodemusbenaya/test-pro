@@ -90,32 +90,53 @@ export const useTodos = defineStore('useTodos', {
   },
   actions: {
     storeTodo(payload) {
+      // debug: log payload received to verify priority value
+
+      console.log('storeTodo received payload:', payload)
+
       this.todos.push({
         id: this.nextId++,
         text: payload.text,
         title: payload.text,
-        description: 'New task',
-        priority: 'medium',
+        description: payload.description || 'New task',
+        priority: payload.priority || 'medium',
         time: new Date().toLocaleTimeString(),
         isCompleted: false,
       })
     },
+
     updateTodo(payload) {
       const index = this.todos.findIndex((item) => item.id == payload.id)
-      if (index != -1) {
+      if (index !== -1) {
         this.todos[index] = {
           ...this.todos[index],
-          text: payload.text,
-          isCompleted: payload.isCompleted,
+          text: payload.text !== undefined ? payload.text : this.todos[index].text,
+          isCompleted:
+            payload.isCompleted !== undefined ? payload.isCompleted : this.todos[index].isCompleted,
+          description:
+            payload.description !== undefined ? payload.description : this.todos[index].description,
+          priority: payload.priority !== undefined ? payload.priority : this.todos[index].priority,
+          completedTime:
+            payload.completedTime !== undefined
+              ? payload.completedTime
+              : this.todos[index].completedTime,
         }
       }
     },
+
     destroyTodo(id) {
       const index = this.todos.findIndex((item) => item.id == id)
-
       if (index > -1 && index < this.todos.length) {
         this.todos.splice(index, 1)
       }
+    },
+
+    destroyAllCompleted() {
+      // remove all todos where isCompleted is true
+      const before = this.todos.length
+      this.todos = this.todos.filter((t) => !t.isCompleted)
+
+      console.log(`destroyAllCompleted removed ${before - this.todos.length} items`)
     },
   },
 })

@@ -31,7 +31,7 @@ body,
 #app {
   height: 100%;
   margin: 0;
-  background: #eaf5ff; /* page background per theme */
+  background: radial-gradient(circle at 10% 10%, #eef8ff 0%, #e6f2fb 30%, #eaf5ff 100%);
   font-family:
     Inter,
     system-ui,
@@ -45,15 +45,16 @@ body,
 .app-root {
   display: flex;
   justify-content: center;
-  padding: 18px 0; /* top/bottom safe spacing */
+  padding: 28px 0; /* more breathing room */
 }
 
 .layout {
   width: 390px; /* mobile target width */
   border-radius: 18px;
-  background: #ffffff; /* card background */
-  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, #ffffff 100%);
+  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
   overflow: hidden;
+  border: 1px solid rgba(16, 24, 40, 0.04);
 }
 
 /* internal layout spacing for pages handled inside views */

@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h1>Vue Website</h1>
+    <h1>Task Manager</h1>
   </header>
 </template>
 
@@ -12,10 +12,18 @@ export default {
 
 <style>
 .header {
-  background: #81a1ff;
+  background: linear-gradient(135deg, #7ea8ff 0%, #91b7ff 100%);
   color: white;
-  padding: 15px;
+  padding: 22px 16px;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  box-shadow: inset 0 -6px 12px rgba(255, 255, 255, 0.06);
+}
+
+.header h1 {
+  margin: 0;
+  letter-spacing: 0.4px;
 }
 </style>
